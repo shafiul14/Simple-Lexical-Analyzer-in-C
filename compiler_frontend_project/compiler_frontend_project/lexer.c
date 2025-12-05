@@ -3,7 +3,7 @@
 #include <ctype.h>
 #include <stdbool.h>
 
-// List of C keywords
+
 const char* keywords[] = {
     "auto", "break", "case", "char", "const", "continue", "default",
     "do", "double", "else", "enum", "extern", "float", "for", "goto",
@@ -12,7 +12,7 @@ const char* keywords[] = {
     "unsigned", "void", "volatile", "while"
 };
 
-// Check if token is a keyword
+
 bool isKeyword(const char* token) {
     int len = sizeof(keywords) / sizeof(keywords[0]);
     for (int i = 0; i < len; i++) {
@@ -23,13 +23,13 @@ bool isKeyword(const char* token) {
     return false;
 }
 
-// List of operators
+
 const char* operators[] = {
     "+", "-", "*", "/", "%", "=", "==", "!=", ">", "<",
     ">=", "<=", "&&", "||", "!", "+=", "-=", "*=", "/=", "%="
 };
 
-// Check if token is an operator
+
 bool isOperator(const char* token) {
     int len = sizeof(operators) / sizeof(operators[0]);
     for (int i = 0; i < len; i++) {
@@ -40,7 +40,7 @@ bool isOperator(const char* token) {
     return false;
 }
 
-// Check if token is a number
+
 bool isNumber(const char* token) {
     bool hasDecimal = false;
     for (int i = 0; token[i] != '\0'; i++) {
@@ -85,7 +85,7 @@ int main() {
         token = strtok(NULL, " \t\n;");
     }
 
-    // Print summary
+   
     printf("\n===== TOKEN SUMMARY =====\n");
     printf("Total Tokens     : %d\n", totalTokens);
     printf("Keywords         : %d\n", keywordCount);
