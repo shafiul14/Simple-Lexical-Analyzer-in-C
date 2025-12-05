@@ -3,7 +3,7 @@
 #include <ctype.h>
 #include <stdbool.h>
 
-// List of C keywords
+
 const char* keywords[] = {
     "auto", "break", "case", "char", "const", "continue", "default",
     "do", "double", "else", "enum", "extern", "float", "for", "goto",
@@ -12,7 +12,7 @@ const char* keywords[] = {
     "unsigned", "void", "volatile", "while"
 };
 
-// Keyword check
+
 bool isKeyword(const char* token) {
     int len = sizeof(keywords) / sizeof(keywords[0]);
     for (int i = 0; i < len; i++) {
@@ -22,13 +22,13 @@ bool isKeyword(const char* token) {
     return false;
 }
 
-// Operator list
+
 const char* operators[] = {
     "+", "-", "*", "/", "%", "=", "==", "!=", ">", "<",
     ">=", "<=", "&&", "||", "!", "+=", "-=", "*=", "/=", "%="
 };
 
-// Operator check
+
 bool isOperator(const char* token) {
     int len = sizeof(operators) / sizeof(operators[0]);
     for (int i = 0; i < len; i++) {
@@ -38,7 +38,7 @@ bool isOperator(const char* token) {
     return false;
 }
 
-// Number check
+
 bool isNumber(const char* token) {
     bool hasDecimal = false;
     for (int i = 0; token[i] != '\0'; i++) {
@@ -51,7 +51,7 @@ bool isNumber(const char* token) {
     return true;
 }
 
-// Uppercase-start Identifier ([A-Z][a-zA-Z0-9]*)
+
 bool isCapitalIdentifier(const char* token) {
     if (!isalpha(token[0]) || !isupper(token[0])) return false;
     for (int i = 1; token[i] != '\0'; i++) {
