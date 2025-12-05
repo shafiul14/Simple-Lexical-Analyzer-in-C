@@ -1,1 +1,0 @@
-# Simple-Lexical-Analyzer-in-C
