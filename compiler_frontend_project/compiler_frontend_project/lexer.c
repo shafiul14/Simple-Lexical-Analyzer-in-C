@@ -3,7 +3,7 @@
 #include <ctype.h>
 #include <stdbool.h>
 
-
+// List of C keywords
 const char* keywords[] = {
     "auto", "break", "case", "char", "const", "continue", "default",
     "do", "double", "else", "enum", "extern", "float", "for", "goto",
@@ -12,35 +12,33 @@ const char* keywords[] = {
     "unsigned", "void", "volatile", "while"
 };
 
-
+// Keyword check
 bool isKeyword(const char* token) {
     int len = sizeof(keywords) / sizeof(keywords[0]);
     for (int i = 0; i < len; i++) {
-        if (strcmp(token, keywords[i]) == 0) {
+        if (strcmp(token, keywords[i]) == 0)
             return true;
-        }
     }
     return false;
 }
 
-
+// Operator list
 const char* operators[] = {
     "+", "-", "*", "/", "%", "=", "==", "!=", ">", "<",
     ">=", "<=", "&&", "||", "!", "+=", "-=", "*=", "/=", "%="
 };
 
-
+// Operator check
 bool isOperator(const char* token) {
     int len = sizeof(operators) / sizeof(operators[0]);
     for (int i = 0; i < len; i++) {
-        if (strcmp(token, operators[i]) == 0) {
+        if (strcmp(token, operators[i]) == 0)
             return true;
-        }
     }
     return false;
 }
 
-
+// Number check
 bool isNumber(const char* token) {
     bool hasDecimal = false;
     for (int i = 0; token[i] != '\0'; i++) {
@@ -48,9 +46,16 @@ bool isNumber(const char* token) {
             hasDecimal = true;
             continue;
         }
-        if (!isdigit(token[i])) {
-            return false;
-        }
+        if (!isdigit(token[i])) return false;
+    }
+    return true;
+}
+
+// Uppercase-start Identifier ([A-Z][a-zA-Z0-9]*)
+bool isCapitalIdentifier(const char* token) {
+    if (!isalpha(token[0]) || !isupper(token[0])) return false;
+    for (int i = 1; token[i] != '\0'; i++) {
+        if (!isalnum(token[i])) return false;
     }
     return true;
 }
@@ -66,26 +71,29 @@ int main() {
         totalTokens++;
 
         if (isKeyword(token)) {
-            printf("Token: %s -> Keyword\n", token);
+            printf("Keyword: %s\n", token);
             keywordCount++;
         }
         else if (isOperator(token)) {
-            printf("Token: %s -> Operator\n", token);
+            printf("Operator: %s\n", token);
             operatorCount++;
         }
         else if (isNumber(token)) {
-            printf("Token: %s -> Number\n", token);
+            printf("Number: %s\n", token);
             numberCount++;
         }
+        else if (isCapitalIdentifier(token)) {
+            printf("IDENTIFIER (Capital): %s\n", token);
+            idCount++;
+        }
         else {
-            printf("Token: %s -> Identifier\n", token);
+            printf("Identifier: %s\n", token);
             idCount++;
         }
 
         token = strtok(NULL, " \t\n;");
     }
 
-   
     printf("\n===== TOKEN SUMMARY =====\n");
     printf("Total Tokens     : %d\n", totalTokens);
     printf("Keywords         : %d\n", keywordCount);
@@ -95,3 +103,4 @@ int main() {
 
     return 0;
 }
+
